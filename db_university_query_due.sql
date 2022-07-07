@@ -1,7 +1,7 @@
 USE university_query;
 
 -- Contare quanti iscritti ci sono stati ogni anno (la data di iscrizione sulla tabella students è enrolment_date)
-SELECT COUNT(enrolment_date) AS iscritti_anno
+SELECT  YEAR(enrolment_date), COUNT(enrolment_date) AS iscritti_anno
 FROM students s
 GROUP BY YEAR(enrolment_date)
 ORDER BY enrolment_date DESC; 
@@ -9,7 +9,7 @@ ORDER BY enrolment_date DESC;
 -- Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia
 SELECT s.name , s.surname , d.name
 FROM students s
-INNER JOIN degrees d 
+INNER JOIN degrees d  
 ON s.degree_id = d.id
 WHERE d.name = 'Corso di Laurea in Economia';
 
@@ -37,4 +37,4 @@ SELECT d2.name, COUNT(d2.name) AS numero_corsi_di_laurea
 FROM degrees d
 INNER JOIN departments d2 
 ON d.department_id = d2.id
-GROUP BY d2.name ;
+GROUP BY d2.id ;
